@@ -7,9 +7,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.sql.DataSource;
 
 @SpringBootApplication
+@EnableTransactionManagement
 public class App {
 
     private static final Logger log = LoggerFactory.getLogger(App.class);
@@ -19,6 +26,7 @@ public class App {
     }
 
     @Bean
+    @Transactional
     public CommandLineRunner execute(PersonRepository repository) {
         return (args) -> {
             repository.save(new Person("Jack"));
@@ -41,5 +49,11 @@ public class App {
                         log.info("");
                     });
         };
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix="app.datasource")//spring boot vezme z application.properties vse co zacina na app.datasource a nasetuje to do Datasource bean
+    public DataSource dataSource() {
+        return new DriverManagerDataSource();
     }
 }

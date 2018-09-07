@@ -1,0 +1,75 @@
+funugje to kdyz to cely dela spirng boot
+ale kdyz jsem definoval vlastni eanu s datasourcem a pridal applicaiton porperitoes  atam deifnoval url udenrma pass
+s
+tak si zacal stezovat hiernate ze
+ main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90036, SQLState: 90036
+2018-09-07 12:49:37.990 ERROR 5200 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Sekvence "HIBERNATE_SEQUENCE" nenalezena
+Sequence "HIBERNATE_SEQUENCE" not found; SQL statement:
+call next value for hibernate_sequence [90036-197]
+
+nasle jsem toto
+1
+https://stackoverflow.com/questions/42160227/spring-boot-can-not-find-hibernate-sequence
+2
+https://stackoverflow.com/questions/51674681/sequence-hibernate-sequence-not-found-for-h2-test-with-generationtype-auto?noredirect=1&lq=1
+3
+https://stackoverflow.com/questions/39807483/sequence-hibernate-sequence-not-found-sql-statement
+
+if you don’t provide any additional information, Hibernate will request the next value from its default sequence.
+nad entitou person mam generatin type.sequence. kdyz neeistuje schema, tak vi hubernate, ze si ma vytvorit
+vlastni schema?
+
+zapnu hibernate sql prikazy a necham to cely na spring bootu, podivam jak tvori schema a generator.
+pak pridatm datasource bean a podivam se kde je rozdil.
+
+kdyz to je na sprigu cely
+tak
+Hibernate: drop table person if exists
+Hibernate: drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: create table person (id bigint not null, name varchar(255), primary key (id))
+
+kdyz pridam bean datasource a app proeprites url
+tak
+Hibernate: drop table person if exists
+Hibernate: drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: create table person (id bigint not null, name varchar(255), primary key (id))
+2018-09-07 14:36:10.322  INFO 6712 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2018-09-07 14:36:10.368  INFO 6712 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-09-07 14:36:11.024  INFO 6712 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+Hibernate: call next value for hibernate_sequence
+2018-09-07 14:36:11.070  WARN 6712 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90036, SQLState: 90036
+2018-09-07 14:36:11.086 ERROR 6712 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Sekvence "HIBERNATE_SEQUENCE" nenalezena
+Sequence "HIBERNATE_SEQUENCE" not found; SQL statement:
+call next value for hibernate_sequence [90036-197]
+
+hibernatae taky vytvri sekvenci, ale nenasl hibrnat seuence. jeslti neni sis chya v datasource,
+ze k tomu nema pristup. conneciton pool? ale to by vyhodilo vyjimku uz na pocatku?
+zkusim na pocatku nedat save ale find all jestli to taky vzhodi vzjimku
+pak zkusim si nainstlaovat h2 a podivat se dovnitr, dat db do souboru
+nebo spustit h2 console
+
+je treba dat nekde transactional? enable trnasctio amangemtn?
+
+ano prvni se vola finda all a pise to tabulka person nenalezena, pritom predtim se se vola create table person pres hibrernate
+
+ejlti vubec bere psirng boot appliaiton proeerite suatmaitcky? zkusim jestli se neco zmenit kdyz upraivm hodnoty
+ano db se ytvorila so do souoru
+jak ji otevru?
+
+do app prop jsem nastivl jdbc do souboru ~ cil moje home direcoyr, db se tam vytvorila, ddl jsem dal create
+psuil jsme progrma. soubor se vytvorill.
+stahl jsem h2 console., spusit ljsem pomoci .bat, otevrel se prohlizeci h2 console,
+pripojil jsme se pomoci jdbc k tomu samymu, soubor se otevrel
+v db je vztovrena tabulka PERSOn i tam je hibernate sekvence. proc hibernate se nemuze pripojit?
+neni to transakci?
+
+zkusim prida tascitonala  a enabel trna smanagemn
+divne, pridal jsem nad beanu command line nad tridu transacitonal a k app tam kde je sprigboot jsem pridal
+enable transcitonamangemnt a funguje to.
+
+db je  vs oburu a ddl je create drop.
+zajimavy je ze ukladam dve neityt a jejic id je 10 a 11, proc to nejde od 1?
+
+zkusim oprait jeste jpa simple

@@ -8,8 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Person {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
