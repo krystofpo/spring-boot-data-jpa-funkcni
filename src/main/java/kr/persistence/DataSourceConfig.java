@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-public class DataSourceConfigLocal {
+public class DataSourceConfig {
 
     @Bean
     @ConfigurationProperties(prefix="app.datasource")//spring boot vezme z application.properties vse co zacina na app.datasource a nasetuje to do Datasource bean

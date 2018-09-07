@@ -83,3 +83,12 @@ ano sprig boot nacita app prop, to je overeno vytovri se beana a nasetuji se ji 
 kdyz pustim s profilem local tak navic nacte app local proerties a datasource se vezme odtud,
 vytovri se db snavzem smaple-local
 
+a co kdyz se pusti metoda main bez arguemntu? defualt profiel ale v app properties neni deifnvoan datasoruce
+odkud se vezmou datasource prop p rdatasource beanu? je mozne v app prop nastavit spring activ peifles.na local
+a ldyz pusitm JVM profil dev, tak se profil nenastavi na local?
+
+kdyz jem pustil bez profilu, chyba, chybely proeprties. dam do app.prpo defual profil
+kdy zjem pusitl bez porfuilu tak se katiival local ok
+pusitm jako local
+pak jako dev, ano kdyz pusitm jako dev, tak se nactou ap prop a tam je ptrofiles acitve local ale to se neprespise
+takze se spravne nactou prop z app-dev.propeties
