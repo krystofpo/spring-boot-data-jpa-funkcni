@@ -1,0 +1,25 @@
+
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building an application
+    id 'application'
+
+    // Apply the groovy plugin to also add support for Groovy (needed for Spock)
+    id 'groovy'
+}
+
+// Define the main class for the application
+mainClassName = 'App'
+
+dependencies {
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.15'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'junit:junit:4.12'
+}
+
+
+repositories {
+   mavenCentral()
+}
