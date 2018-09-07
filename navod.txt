@@ -72,4 +72,6 @@ enable transcitonamangemnt a funguje to.
 db je  vs oburu a ddl je create drop.
 zajimavy je ze ukladam dve neityt a jejic id je 10 a 11, proc to nejde od 1?
 
-zkusim oprait jeste jpa simple
+
+datosurce vyhodit pryc z tridy app, nechat nekde stanou? jako vlasnti tirdu?
+pak pridat porfil podle porfilu se vbere beeana a udela se db.

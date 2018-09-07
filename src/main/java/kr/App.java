@@ -51,9 +51,9 @@ public class App {
         };
     }
 
-    @Bean
-    @ConfigurationProperties(prefix="app.datasource")//spring boot vezme z application.properties vse co zacina na app.datasource a nasetuje to do Datasource bean
-    public DataSource dataSource() {
-        return new DriverManagerDataSource();
-    }
+//    @Bean
+//    @ConfigurationProperties(prefix="app.datasource")//spring boot vezme z application.properties vse co zacina na app.datasource a nasetuje to do Datasource bean
+//    public DataSource dataSource() {
+//        return new DriverManagerDataSource();
+//    }
 }
