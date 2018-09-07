@@ -2,6 +2,7 @@ package kr;
 
 import kr.persistence.Person;
 import kr.persistence.PersonRepository;
+import kr.propbean.PropertyBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -27,8 +28,10 @@ public class App {
 
     @Bean
     @Transactional
-    public CommandLineRunner execute(PersonRepository repository) {
+    public CommandLineRunner execute(PersonRepository repository, PropertyBean pb) {
         return (args) -> {
+            log.info("z app.properties se vzala hodnota " + pb.toString());
+
             repository.save(new Person("Jack"));
             repository.save(new Person("Chloe"));
 

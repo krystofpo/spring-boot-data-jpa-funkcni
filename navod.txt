@@ -75,3 +75,11 @@ zajimavy je ze ukladam dve neityt a jejic id je 10 a 11, proc to nejde od 1?
 
 datosurce vyhodit pryc z tridy app, nechat nekde stanou? jako vlasnti tirdu?
 pak pridat porfil podle porfilu se vbere beeana a udela se db.
+
+zkusim vzyorti app prop to y se melo nacist vdy a potom se to prepise profielm . properties.
+ozkouset.
+
+ano sprig boot nacita app prop, to je overeno vytovri se beana a nasetuji se ji properties  ap rpo
+kdyz pustim s profilem local tak navic nacte app local proerties a datasource se vezme odtud,
+vytovri se db snavzem smaple-local
+
