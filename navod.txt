@@ -92,3 +92,6 @@ kdy zjem pusitl bez porfuilu tak se katiival local ok
 pusitm jako local
 pak jako dev, ano kdyz pusitm jako dev, tak se nactou ap prop a tam je ptrofiles acitve local ale to se neprespise
 takze se spravne nactou prop z app-dev.propeties
+
+aby se zytvorilo schema samo kdyz amnim enityt udelat scirpt na update
+https://stackoverflow.com/questions/36966337/how-to-generate-a-ddl-creation-script-with-a-modern-spring-boot-data-jpa-and-h
